@@ -51,6 +51,9 @@ class PrepareBaseModel:
             for layer in model.layers[:-freeze_till]:
                 layer.trainable = False
 
+            for layer in model.layers[-freeze_till:]:
+                layer.trainable = True
+
         x = model.output
 
         x = layers.GlobalAveragePooling2D()(x)
@@ -80,6 +83,24 @@ class PrepareBaseModel:
             metrics=["accuracy"],
         )
 
+        trainable_params = sum(
+            tf.keras.backend.count_params(weight)
+            for weight in full_model.trainable_weights
+        )
+
+        non_trainable_params = sum(
+            tf.keras.backend.count_params(weight)
+            for weight in full_model.non_trainable_weights
+        )
+
+        logger.info(
+            f"Trainable parameters: {trainable_params}"
+        )
+
+        logger.info(
+            f"Non-trainable parameters: {non_trainable_params}"
+        )
+
         full_model.summary()
 
         return full_model
@@ -88,8 +109,8 @@ class PrepareBaseModel:
         self.full_model = self._prepare_full_model(
             model=self.model,
             classes=self.config.params_classes,
-            freeze_all=True,
-            freeze_till=None,
+            freeze_all=False,
+            freeze_till=4,
             learning_rate=self.config.params_learning_rate,
         )
 
@@ -98,4 +119,6 @@ class PrepareBaseModel:
             model=self.full_model,
         )
 
-        logger.info("VGG16 base model updated successfully.")
+        logger.info(
+            "VGG16 fine-tuning model created successfully."
+        )

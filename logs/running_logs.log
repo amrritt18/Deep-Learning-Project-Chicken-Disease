@@ -14,3 +14,202 @@
 [2026-09-08 22:40:31,068: INFO: common: YAML file: params.yaml loaded successfully]
 [2026-09-08 22:40:31,068: INFO: common: Created directory at: artifacts]
 [2026-09-08 22:40:31,069: INFO: common: Created directory at: artifacts/data_ingestion]
+[2026-09-09 03:54:31,662: INFO: stage_02_prepare_base_model: >>>>>> Stage Prepare Base Model stage started <<<<<<]
+[2026-09-09 03:54:31,663: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 03:54:31,663: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 03:54:31,664: INFO: common: Created directory at: artifacts]
+[2026-09-09 03:54:31,664: INFO: common: Created directory at: artifacts/prepare_base_model]
+[2026-09-09 03:55:22,980: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-09-09 03:55:23,081: INFO: prepare_base_model: Model saved at: artifacts/prepare_base_model/base_model.h5]
+[2026-09-09 03:55:23,082: INFO: prepare_base_model: VGG16 base model created successfully.]
+[2026-09-09 03:55:23,224: INFO: prepare_base_model: Model saved at: artifacts/prepare_base_model/base_model_updated.h5]
+[2026-09-09 03:55:23,224: INFO: prepare_base_model: VGG16 base model updated successfully.]
+[2026-09-09 03:55:23,224: INFO: stage_02_prepare_base_model: >>>>>> Stage Prepare Base Model stage completed <<<<<<]
+[2026-09-09 03:56:37,138: INFO: stage_03_model_trainer: >>>>>> Stage Training started <<<<<<]
+[2026-09-09 03:56:37,139: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 03:56:37,140: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 03:56:37,140: INFO: common: Created directory at: artifacts]
+[2026-09-09 03:56:37,140: INFO: common: Created directory at: artifacts/training]
+[2026-09-09 03:56:37,614: INFO: model_trainer: Base model loaded from: artifacts/prepare_base_model/base_model_updated.h5]
+[2026-09-09 03:56:37,629: INFO: model_trainer: Training samples: 312]
+[2026-09-09 03:56:37,629: INFO: model_trainer: Validation samples: 78]
+[2026-09-09 03:56:37,629: INFO: model_trainer: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 03:56:37,629: INFO: model_trainer: Steps per epoch: 20]
+[2026-09-09 03:56:37,629: INFO: model_trainer: Validation steps: 5]
+[2026-09-09 03:57:02,875: INFO: model_trainer: Trained model saved at: artifacts/training/model.h5]
+[2026-09-09 03:57:02,876: INFO: stage_03_model_trainer: >>>>>> Stage Training completed <<<<<<]
+[2026-09-09 04:03:01,495: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage started <<<<<<]
+[2026-09-09 04:03:01,496: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:03:01,496: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:03:01,497: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:03:01,968: INFO: evaluation: Model loaded from: artifacts/training/model.h5]
+[2026-09-09 04:03:01,976: INFO: evaluation: Validation samples: 78]
+[2026-09-09 04:03:01,976: INFO: evaluation: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:03:04,638: INFO: evaluation: Evaluation loss: 0.6266]
+[2026-09-09 04:03:04,639: INFO: evaluation: Evaluation accuracy: 0.7179]
+[2026-09-09 04:03:04,639: INFO: common: JSON file saved at: scores.json]
+[2026-09-09 04:03:04,639: INFO: evaluation: Evaluation scores saved successfully.]
+[2026-09-09 04:03:04,639: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage completed <<<<<<]
+[2026-09-09 04:07:06,769: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage started <<<<<<]
+[2026-09-09 04:07:06,770: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:07:06,771: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:07:06,771: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:07:07,245: INFO: evaluation: Model loaded from: artifacts/training/model.h5]
+[2026-09-09 04:07:07,254: INFO: evaluation: Validation samples: 78]
+[2026-09-09 04:07:07,254: INFO: evaluation: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:07:09,907: INFO: evaluation: Evaluation loss: 0.6266]
+[2026-09-09 04:07:09,908: INFO: evaluation: Evaluation accuracy: 0.7179]
+[2026-09-09 04:07:12,479: INFO: evaluation: Accuracy: 0.7179]
+[2026-09-09 04:07:12,479: INFO: evaluation: Precision: 0.9048]
+[2026-09-09 04:07:12,479: INFO: evaluation: Recall: 0.4872]
+[2026-09-09 04:07:12,479: INFO: evaluation: F1-score: 0.6333]
+[2026-09-09 04:07:12,479: INFO: evaluation: ROC-AUC: 0.9349]
+[2026-09-09 04:07:12,479: INFO: evaluation: Confusion Matrix:
+[[37  2]
+ [20 19]]]
+[2026-09-09 04:07:12,479: INFO: evaluation: Classification Report:
+              precision    recall  f1-score   support
+
+ Coccidiosis       0.65      0.95      0.77        39
+     Healthy       0.90      0.49      0.63        39
+
+    accuracy                           0.72        78
+   macro avg       0.78      0.72      0.70        78
+weighted avg       0.78      0.72      0.70        78
+]
+[2026-09-09 04:07:12,480: INFO: common: JSON file saved at: scores.json]
+[2026-09-09 04:07:12,480: INFO: evaluation: Evaluation scores saved successfully.]
+[2026-09-09 04:07:12,480: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage completed <<<<<<]
+[2026-09-09 04:11:01,493: INFO: stage_03_model_trainer: >>>>>> Stage Training started <<<<<<]
+[2026-09-09 04:11:01,494: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:11:01,495: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:11:01,495: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:11:01,495: INFO: common: Created directory at: artifacts/training]
+[2026-09-09 04:11:01,975: INFO: model_trainer: Base model loaded from: artifacts/prepare_base_model/base_model_updated.h5]
+[2026-09-09 04:11:01,988: INFO: model_trainer: Training samples: 312]
+[2026-09-09 04:11:01,988: INFO: model_trainer: Validation samples: 78]
+[2026-09-09 04:11:01,988: INFO: model_trainer: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:11:01,988: INFO: model_trainer: Steps per epoch: 20]
+[2026-09-09 04:11:01,988: INFO: model_trainer: Validation steps: 5]
+[2026-09-09 04:15:07,071: INFO: model_trainer: Training completed successfully.]
+[2026-09-09 04:15:07,073: INFO: stage_03_model_trainer: >>>>>> Stage Training completed <<<<<<]
+[2026-09-09 04:16:05,781: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage started <<<<<<]
+[2026-09-09 04:16:05,782: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:16:05,783: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:16:05,783: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:16:06,250: INFO: evaluation: Model loaded from: artifacts/training/model.h5]
+[2026-09-09 04:16:06,258: INFO: evaluation: Validation samples: 78]
+[2026-09-09 04:16:06,258: INFO: evaluation: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:16:09,045: INFO: evaluation: Evaluation loss: 0.2686]
+[2026-09-09 04:16:09,046: INFO: evaluation: Evaluation accuracy: 0.9231]
+[2026-09-09 04:16:11,661: INFO: evaluation: Accuracy: 0.9231]
+[2026-09-09 04:16:11,661: INFO: evaluation: Precision: 0.9024]
+[2026-09-09 04:16:11,661: INFO: evaluation: Recall: 0.9487]
+[2026-09-09 04:16:11,661: INFO: evaluation: F1-score: 0.9250]
+[2026-09-09 04:16:11,661: INFO: evaluation: ROC-AUC: 0.9645]
+[2026-09-09 04:16:11,661: INFO: evaluation: Confusion Matrix:
+[[35  4]
+ [ 2 37]]]
+[2026-09-09 04:16:11,661: INFO: evaluation: Classification Report:
+              precision    recall  f1-score   support
+
+ Coccidiosis       0.95      0.90      0.92        39
+     Healthy       0.90      0.95      0.93        39
+
+    accuracy                           0.92        78
+   macro avg       0.92      0.92      0.92        78
+weighted avg       0.92      0.92      0.92        78
+]
+[2026-09-09 04:16:11,661: INFO: common: JSON file saved at: scores.json]
+[2026-09-09 04:16:11,661: INFO: evaluation: Evaluation scores saved successfully.]
+[2026-09-09 04:16:11,661: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage completed <<<<<<]
+[2026-09-09 04:17:53,770: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage started <<<<<<]
+[2026-09-09 04:17:53,772: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:17:53,772: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:17:53,772: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:17:54,230: INFO: evaluation: Model loaded from: artifacts/training/model.h5]
+[2026-09-09 04:17:54,238: INFO: evaluation: Validation samples: 78]
+[2026-09-09 04:17:54,238: INFO: evaluation: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:17:56,978: INFO: evaluation: Evaluation loss: 0.2686]
+[2026-09-09 04:17:56,979: INFO: evaluation: Evaluation accuracy: 0.9231]
+[2026-09-09 04:17:59,640: INFO: evaluation: Coccidiosis Precision: 0.9459]
+[2026-09-09 04:17:59,640: INFO: evaluation: Coccidiosis Recall: 0.8974]
+[2026-09-09 04:17:59,640: INFO: evaluation: Coccidiosis F1-score: 0.9211]
+[2026-09-09 04:17:59,640: INFO: evaluation: Healthy Precision: 0.9024]
+[2026-09-09 04:17:59,640: INFO: evaluation: Healthy Recall: 0.9487]
+[2026-09-09 04:17:59,640: INFO: evaluation: Healthy F1-score: 0.9250]
+[2026-09-09 04:17:59,640: INFO: evaluation: ROC-AUC: 0.0355]
+[2026-09-09 04:17:59,641: INFO: evaluation: Confusion Matrix:
+[[35  4]
+ [ 2 37]]]
+[2026-09-09 04:17:59,641: INFO: evaluation: Classification Report:
+              precision    recall  f1-score   support
+
+ Coccidiosis       0.95      0.90      0.92        39
+     Healthy       0.90      0.95      0.93        39
+
+    accuracy                           0.92        78
+   macro avg       0.92      0.92      0.92        78
+weighted avg       0.92      0.92      0.92        78
+]
+[2026-09-09 04:17:59,641: INFO: common: JSON file saved at: scores.json]
+[2026-09-09 04:17:59,641: INFO: evaluation: Evaluation scores saved successfully.]
+[2026-09-09 04:17:59,641: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage completed <<<<<<]
+[2026-09-09 04:29:27,403: INFO: stage_02_prepare_base_model: >>>>>> Stage Prepare Base Model stage started <<<<<<]
+[2026-09-09 04:29:27,404: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:29:27,405: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:29:27,405: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:29:27,405: INFO: common: Created directory at: artifacts/prepare_base_model]
+[2026-09-09 04:29:27,842: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-09-09 04:29:27,912: INFO: prepare_base_model: Model saved at: artifacts/prepare_base_model/base_model.h5]
+[2026-09-09 04:29:27,912: INFO: prepare_base_model: VGG16 base model created successfully.]
+[2026-09-09 04:29:27,941: INFO: prepare_base_model: Trainable parameters: 7211266]
+[2026-09-09 04:29:27,941: INFO: prepare_base_model: Non-trainable parameters: 7635264]
+[2026-09-09 04:29:28,019: INFO: prepare_base_model: Model saved at: artifacts/prepare_base_model/base_model_updated.h5]
+[2026-09-09 04:29:28,019: INFO: prepare_base_model: VGG16 fine-tuning model created successfully.]
+[2026-09-09 04:29:28,019: INFO: stage_02_prepare_base_model: >>>>>> Stage Prepare Base Model stage completed <<<<<<]
+[2026-09-09 04:32:35,061: INFO: stage_03_model_trainer: >>>>>> Stage Training started <<<<<<]
+[2026-09-09 04:32:35,062: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:32:35,063: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:32:35,063: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:32:35,063: INFO: common: Created directory at: artifacts/training]
+[2026-09-09 04:32:35,525: INFO: model_trainer: Base model loaded from: artifacts/prepare_base_model/base_model_updated.h5]
+[2026-09-09 04:32:35,538: INFO: model_trainer: Training samples: 312]
+[2026-09-09 04:32:35,538: INFO: model_trainer: Validation samples: 78]
+[2026-09-09 04:32:35,538: INFO: model_trainer: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:32:35,538: INFO: model_trainer: Steps per epoch: 20]
+[2026-09-09 04:32:35,538: INFO: model_trainer: Validation steps: 5]
+[2026-09-09 04:34:28,123: INFO: model_trainer: Training completed successfully.]
+[2026-09-09 04:34:28,123: INFO: stage_03_model_trainer: >>>>>> Stage Training completed <<<<<<]
+[2026-09-09 04:37:29,244: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage started <<<<<<]
+[2026-09-09 04:37:29,245: INFO: common: YAML file: config/config.yaml loaded successfully]
+[2026-09-09 04:37:29,246: INFO: common: YAML file: params.yaml loaded successfully]
+[2026-09-09 04:37:29,246: INFO: common: Created directory at: artifacts]
+[2026-09-09 04:37:29,815: INFO: evaluation: Model loaded from: artifacts/training/model.h5]
+[2026-09-09 04:37:29,823: INFO: evaluation: Validation samples: 78]
+[2026-09-09 04:37:29,823: INFO: evaluation: Class indices: {'Coccidiosis': 0, 'Healthy': 1}]
+[2026-09-09 04:37:32,704: INFO: evaluation: Evaluation loss: 0.0996]
+[2026-09-09 04:37:32,704: INFO: evaluation: Evaluation accuracy: 0.9487]
+[2026-09-09 04:37:35,351: INFO: evaluation: Coccidiosis Precision: 0.9730]
+[2026-09-09 04:37:35,351: INFO: evaluation: Coccidiosis Recall: 0.9231]
+[2026-09-09 04:37:35,351: INFO: evaluation: Coccidiosis F1-score: 0.9474]
+[2026-09-09 04:37:35,351: INFO: evaluation: Healthy Precision: 0.9268]
+[2026-09-09 04:37:35,351: INFO: evaluation: Healthy Recall: 0.9744]
+[2026-09-09 04:37:35,351: INFO: evaluation: Healthy F1-score: 0.9500]
+[2026-09-09 04:37:35,351: INFO: evaluation: ROC-AUC: 0.0033]
+[2026-09-09 04:37:35,351: INFO: evaluation: Confusion Matrix:
+[[36  3]
+ [ 1 38]]]
+[2026-09-09 04:37:35,351: INFO: evaluation: Classification Report:
+              precision    recall  f1-score   support
+
+ Coccidiosis       0.97      0.92      0.95        39
+     Healthy       0.93      0.97      0.95        39
+
+    accuracy                           0.95        78
+   macro avg       0.95      0.95      0.95        78
+weighted avg       0.95      0.95      0.95        78
+]
+[2026-09-09 04:37:35,352: INFO: common: JSON file saved at: scores.json]
+[2026-09-09 04:37:35,352: INFO: evaluation: Evaluation scores saved successfully.]
+[2026-09-09 04:37:35,352: INFO: stage_04_evaluation: >>>>>> Stage Evaluation stage completed <<<<<<]
