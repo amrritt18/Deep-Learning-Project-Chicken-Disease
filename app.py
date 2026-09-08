@@ -6,7 +6,7 @@ import tensorflow as tf
 from PIL import Image
 
 
-MODEL_PATH = "artifacts/training/model.h5"
+MODEL_PATH = "artifacts/training/vgg16_finetuned.h5"
 IMAGE_SIZE = (224, 224)
 CLASS_NAMES = {
     0: "Coccidiosis",
